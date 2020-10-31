@@ -35,20 +35,20 @@ export class UserService {
       })
     };
 
-    return this.httpClient.get(environment.server + "customers/" + id, httpOptions);
+    return this.httpClient.get(environment.server + "users/" + id, httpOptions);
   }
 
-  post(customer: any) {
+  post(user: any) {
     let httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': localStorage.getItem('token')
       })
     };
-    return this.httpClient.post(environment.server + "customers", customer, httpOptions);
+    return this.httpClient.post(environment.server + "users", user, httpOptions);
   }
 
-  patch(id: number, customer: any) {
+  put(id: number, user: any) {
     let httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -56,19 +56,7 @@ export class UserService {
       })
     };
 
-    console.log('customer', customer);
-    return this.httpClient.patch(environment.server + "customers/" + id, customer, httpOptions);
-  }
-
-  checkCode(code: string): Observable<any> {
-    let httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': localStorage.getItem('token')
-      }),
-    }
-
-    return this.httpClient.get(environment.server + "customers/bycode/" + code, httpOptions)
+    return this.httpClient.put(environment.server + "users/" + id, user, httpOptions);
   }
 
   delete(id: number) {
@@ -79,6 +67,6 @@ export class UserService {
       })
     };
 
-    return this.httpClient.delete(environment.server + "customers/" + id, httpOptions);
+    return this.httpClient.delete(environment.server + "users/" + id, httpOptions);
   }
 }

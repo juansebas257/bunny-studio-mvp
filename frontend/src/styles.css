@@ -12,12 +12,23 @@ body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+.hidden {
+    visibility: hidden;
+}
+
+
+/* Text styles */
+
 .text-center {
     text-align: center !important;
 }
 
-.hidden {
-    visibility: hidden;
+.green-text {
+    color: #398439;
+}
+
+.red-text {
+    color: #dc3545;
 }
 
 
@@ -52,4 +63,25 @@ body {
 
 .float-fab>.fab-button {
     font-size: 1.2em;
+}
+
+.close-dialog {
+    cursor: pointer;
+    color: #d9534f;
+    float: right;
+    margin-top: -24px;
+    margin-right: -20px;
+}
+
+table {
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+@media (min-width: 768px) {
+    .container {
+        margin: auto;
+        max-width: 1280px;
+        width: 70%;
+    }
 }

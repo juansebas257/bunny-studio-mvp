@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { FrameService } from '../services/frame.service';
 import { UserService } from '../services/user.service';
+import { UserFormComponent } from './user-form/user-form.component';
 
 @Component({
   selector: 'app-user',
@@ -12,7 +13,7 @@ import { UserService } from '../services/user.service';
 })
 export class UserComponent implements OnInit {
 
-  displayedColumns: string[] = ['name', 'created_at', 'updated_at', 'actions'];
+  displayedColumns: string[] = ['picture', 'name', 'created_at', 'updated_at', 'actions'];
   dataSource = null;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -49,34 +50,18 @@ export class UserComponent implements OnInit {
     //dialogConfig.width = '75%';
     dialogConfig.data = {
       id
-    }
+    };
 
-    /*const dialogRef = this.dialog.open(CustomerFormComponent, dialogConfig)
+    const dialogRef = this.dialog.open(UserFormComponent, dialogConfig)
     dialogRef.afterClosed().subscribe(result => {
       if (result != null && result != '') {
         this.updateTable()
       }
-    })*/
+    });
   }
 
   confirmDelete(id: number) {
-    const dialogConfig = new MatDialogConfig()
-    dialogConfig.disableClose = true
-    dialogConfig.autoFocus = true
-    dialogConfig.position = {
-      'top': '40px'
-    }
-    dialogConfig.width = '75%'
-    dialogConfig.data = {
-      id: id
-    }
-
-    /*const dialogRef = this.dialog.open(CustomerDeleteComponent, dialogConfig)
-    dialogRef.afterClosed().subscribe(result => {
-      if (result === 'refreshlist') {
-        this.updateTable()
-      }
-    })*/
+    
   }
 
 }

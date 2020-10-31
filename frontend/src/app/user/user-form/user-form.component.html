@@ -1,0 +1,24 @@
+<a class="close-dialog" (click)="close()">
+    <i class="fa fa-window-close fa-2x"></i>
+</a>
+<h2 mat-dialog-title><i class="fa fa-users"></i> {{ title }}</h2>
+
+<form [formGroup]="form" (ngSubmit)="save()" autocomplete="off" mat-dialog-content>
+
+    <div fxLayout='row' fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="16px">
+        <div fxFlex>
+            <mat-form-field class="form-input">
+                <input matInput placeholder="Name*" formControlName="name">
+            </mat-form-field>
+        </div>
+    </div>
+
+    <br>
+    <div fxLayout="row">
+        <div fxFlex fxLayoutAlign="center" fxLayoutGap="10px">
+            <button class="mat-raised-button mat-primary" [disabled]="isLoading">{{ isLoading? 'Loading...' : 'Save' }}</button>
+            <a class="mat-raised-button" (click)="close()">Close</a>
+        </div>
+    </div>
+    <br>
+</form>

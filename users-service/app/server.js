@@ -5,7 +5,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
-const port = 3000;
+const port = process.env.PORT;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -20,7 +20,8 @@ app.listen(port, () => {
 // get all users
 app.get('/users', async function(req, res) {
     const data = await database.query(`SELECT * FROM users`, []);
-    const totalItemCount = await database.query(`SELECT count(id) FROM users`, []);
+    const itemCount = await database.first(`SELECT count(id) AS total FROM users`, []);
+    const totalItemCount = itemCount.total;
     res.status(200).json({ data, totalItemCount });
 });
 

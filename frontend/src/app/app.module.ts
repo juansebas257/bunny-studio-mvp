@@ -18,12 +18,23 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { UserDeleteComponent } from './user/user-delete/user-delete.component';
+import { TaskComponent } from './task/task.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
+import { CardsContainerComponent } from './task/cards-container/cards-container.component';
+import { CardFormComponent } from './task/card-form/card-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserComponent,
-    UserFormComponent
+    UserFormComponent,
+    UserDeleteComponent,
+    TaskComponent,
+    CardsContainerComponent,
+    CardFormComponent
   ],
   imports: [
     HttpClientModule,
@@ -41,10 +52,14 @@ import { MatInputModule } from '@angular/material/input';
     FormsModule,
     ReactiveFormsModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatSidenavModule,
+    MatListModule,
+    MatMenuModule
   ],
   entryComponents: [
-    UserFormComponent
+    UserFormComponent,
+    UserDeleteComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

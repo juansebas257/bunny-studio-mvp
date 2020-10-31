@@ -1,0 +1,22 @@
+<mat-sidenav-container class="drawer-container">
+    <mat-sidenav mode="side" opened class="sidenav">
+        <mat-nav-list>
+            <mat-divider></mat-divider>
+            <a mat-list-item [ngClass]="{'mat-list-item-active': selected_submenu == 'pending'}">
+                <i class="fa fa-th-list fa-fw fa-icon"></i> Pending Tasks
+            </a>
+            <mat-divider></mat-divider>
+            <a mat-list-item [ngClass]="{'mat-list-item-active': selected_submenu == 'pending'}">
+                <i class="fa fa-check-circle fa-fw fa-icon"></i> Completed Tasks
+            </a>
+            <mat-divider></mat-divider>
+            <a mat-list-item [ngClass]="{'mat-list-item-active': selected_submenu == 'pending'}">
+                <i class="fa fa-archive fa-fw fa-icon"></i> Archived Tasks
+            </a>
+            <mat-divider></mat-divider>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <app-cards-container></app-cards-container>
+    </mat-sidenav-content>
+</mat-sidenav-container>

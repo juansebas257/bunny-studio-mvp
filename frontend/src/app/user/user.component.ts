@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { FrameService } from '../services/frame.service';
 import { UserService } from '../services/user.service';
+import { UserDeleteComponent } from './user-delete/user-delete.component';
 import { UserFormComponent } from './user-form/user-form.component';
 
 @Component({
@@ -20,7 +21,7 @@ export class UserComponent implements OnInit {
   isLoading: boolean = true;
   totalItemCount: number = 0;
 
-  constructor(private userService: UserService, public dialog: MatDialog) { }
+  constructor(private userService: UserService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.updateTable();
@@ -45,9 +46,7 @@ export class UserComponent implements OnInit {
 
   openModal(id: number = null) {
     const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    //dialogConfig.width = '75%';
     dialogConfig.data = {
       id
     };
@@ -55,13 +54,24 @@ export class UserComponent implements OnInit {
     const dialogRef = this.dialog.open(UserFormComponent, dialogConfig)
     dialogRef.afterClosed().subscribe(result => {
       if (result != null && result != '') {
-        this.updateTable()
+        this.updateTable();
       }
     });
   }
 
   confirmDelete(id: number) {
-    
+    const dialogConfig = new MatDialogConfig()
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = {
+      id: id
+    };
+
+    const dialogRef = this.dialog.open(UserDeleteComponent, dialogConfig)
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'refreshlist') {
+        this.updateTable();
+      }
+    });
   }
 
 }

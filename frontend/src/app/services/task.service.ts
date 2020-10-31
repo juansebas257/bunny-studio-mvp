@@ -6,23 +6,18 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class TaskService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getAll(page: string = '', sortColumn: string = '', sortDirection: string = ''): Observable<any> {
+  getAll(): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
-      }),
-      params: {
-        page,
-        sortColumn,
-        sortDirection
-      }
+      })
     };
 
-    return this.httpClient.get(environment.users_server + "users", httpOptions);
+    return this.httpClient.get(environment.tasks_server + "tasks", httpOptions);
   }
 
 
@@ -33,7 +28,7 @@ export class UserService {
       })
     };
 
-    return this.httpClient.get(environment.users_server + "users/" + id, httpOptions);
+    return this.httpClient.get(environment.tasks_server + "tasks/" + id, httpOptions);
   }
 
   post(user: any) {
@@ -42,7 +37,7 @@ export class UserService {
         'Content-Type': 'application/json'
       })
     };
-    return this.httpClient.post(environment.users_server + "users", user, httpOptions);
+    return this.httpClient.post(environment.tasks_server + "tasks", user, httpOptions);
   }
 
   put(id: number, user: any) {
@@ -52,7 +47,7 @@ export class UserService {
       })
     };
 
-    return this.httpClient.put(environment.users_server + "users/" + id, user, httpOptions);
+    return this.httpClient.put(environment.tasks_server + "tasks/" + id, user, httpOptions);
   }
 
   delete(id: number) {
@@ -62,6 +57,6 @@ export class UserService {
       })
     };
 
-    return this.httpClient.delete(environment.users_server + "users/" + id, httpOptions);
+    return this.httpClient.delete(environment.tasks_server + "tasks/" + id, httpOptions);
   }
 }

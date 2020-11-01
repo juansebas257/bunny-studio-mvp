@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -15,7 +16,7 @@ export class UserFormComponent implements OnInit {
   form: FormGroup;
   isLoading: boolean = true;
 
-  constructor(private userService: UserService, private fb: FormBuilder, private dialogRef: MatDialogRef<UserFormComponent>, @Inject(MAT_DIALOG_DATA) data) {
+  constructor(private userService: UserService, private fb: FormBuilder, private snackBar: MatSnackBar, private dialogRef: MatDialogRef<UserFormComponent>, @Inject(MAT_DIALOG_DATA) data) {
     this.id = data.id
   }
 
@@ -51,6 +52,7 @@ export class UserFormComponent implements OnInit {
   save() {
     // stop here if form is invalid
     if (this.form.invalid || this.isLoading) {
+      console.log(this.form)
       return;
     }
 
@@ -61,10 +63,11 @@ export class UserFormComponent implements OnInit {
         .subscribe(
           result => {
             this.dialogRef.close(result['insertId']);
-            //this.notifier.notify('success', 'Se ha creado el cliente correctamente')
+            this.openSnackBar('User created!');
           },
           error => {
-            //this.notifier.notify('error', 'Error al guardar el cliente ' + error.message)
+            // TODO: handle error
+            this.openSnackBar('Error on create user!');
             this.isLoading = false;
           }
         );
@@ -73,11 +76,11 @@ export class UserFormComponent implements OnInit {
         .subscribe(
           result => {
             this.dialogRef.close(this.id);
-            //this.notifier.notify('info', 'Se ha modificado el cliente correctamente')
+            this.openSnackBar('User updated!');
           },
           error => {
-            //console.log(error)
-            //this.notifier.notify('error', 'Error al guardar el cliente ' + error.message)
+            // TODO: handle error
+            this.openSnackBar('Error on update user!');
             this.isLoading = false;
           }
         );
@@ -86,6 +89,12 @@ export class UserFormComponent implements OnInit {
 
   close() {
     this.dialogRef.close()
+  }
+
+  openSnackBar(message: string) {
+    this.snackBar.open(message, null, {
+      duration: 2000,
+    });
   }
 
 }

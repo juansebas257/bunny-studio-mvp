@@ -15,6 +15,6 @@
 </div>
 
 <div mat-dialog-actions>
-    <button mat-raised-button class="mat-button mat-primary" [disabled]="isLoading">{{ isLoading? 'Loading...' : 'Save' }}</button>
+    <button mat-raised-button (click)="save()" class="mat-button mat-primary" [disabled]="isLoading">{{ isLoading? 'Loading...' : 'Save' }}</button>
     <a mat-button (click)="close()">Close</a>
 </div>

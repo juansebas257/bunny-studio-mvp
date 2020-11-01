@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { TaskService } from 'src/app/services/task.service';
 
 @Component({
@@ -17,7 +18,7 @@ export class TaskFormComponent implements OnInit {
   form: FormGroup;
   isLoading: boolean = true;
 
-  constructor(private taskService: TaskService, private fb: FormBuilder, private dialogRef: MatDialogRef<TaskFormComponent>, @Inject(MAT_DIALOG_DATA) data: any) {
+  constructor(private taskService: TaskService, private fb: FormBuilder, private snackBar: MatSnackBar, private dialogRef: MatDialogRef<TaskFormComponent>, @Inject(MAT_DIALOG_DATA) data: any) {
     this.id = data.id
     this.user = data.user
   }
@@ -69,10 +70,11 @@ export class TaskFormComponent implements OnInit {
         .subscribe(
           result => {
             this.dialogRef.close(result['insertId']);
-            // TODO: notify
+            this.openSnackBar('Task created!');
           },
           error => {
             // TODO: handle error
+            this.openSnackBar('Error on create task!');
             this.isLoading = false;
           }
         );
@@ -81,10 +83,11 @@ export class TaskFormComponent implements OnInit {
         .subscribe(
           result => {
             this.dialogRef.close(this.id);
-            // TODO: notify
+            this.openSnackBar('Task updated!');
           },
           error => {
             // TODO: handle error
+            this.openSnackBar('Error on update task!');
             this.isLoading = false;
           }
         );
@@ -100,4 +103,9 @@ export class TaskFormComponent implements OnInit {
     this.save();
   }
 
+  openSnackBar(message: string) {
+    this.snackBar.open(message, null, {
+      duration: 2000,
+    });
+  }
 }

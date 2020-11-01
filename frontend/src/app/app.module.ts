@@ -26,6 +26,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { CardsContainerComponent } from './task/cards-container/cards-container.component';
 import { MatCardModule } from '@angular/material/card';
 import { TaskFormComponent } from './task/task-form/task-form.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { TaskFormComponent } from './task/task-form/task-form.component';
     MatSidenavModule,
     MatListModule,
     MatMenuModule,
-    MatCardModule
+    MatCardModule,
+    MatSnackBarModule
   ],
   entryComponents: [
     UserFormComponent,

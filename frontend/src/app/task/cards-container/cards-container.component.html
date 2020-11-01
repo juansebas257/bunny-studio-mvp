@@ -1,4 +1,12 @@
-<p>cards-container works!</p>
+<div class="cards-container">
+    <mat-card *ngFor="let task of tasks" class="task-card">
+        <div class="task-date">
+            <i class="fa fa-clock"></i> {{ task.created_at | date: 'yyyy-MM-dd H:s'}}
+        </div>
+        {{ task.description }}
+    </mat-card>
+</div>
+
 <br>
 <br>
 <div class="float-fab" *ngIf="!isLoading">

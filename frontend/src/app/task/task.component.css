@@ -24,3 +24,7 @@
 .mat-list-base {
     padding-top: 0;
 }
+
+.mat-list-item-active {
+    background-color: #e0e0e0;
+}

@@ -10,14 +10,14 @@ export class TaskService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getAll(): Observable<any> {
+  getAll(user_id: string, status: string): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     };
 
-    return this.httpClient.get(environment.tasks_server + "tasks", httpOptions);
+    return this.httpClient.get(`${environment.tasks_server}tasksbyuser/${status}/${user_id}`, httpOptions);
   }
 
 
@@ -28,7 +28,7 @@ export class TaskService {
       })
     };
 
-    return this.httpClient.get(environment.tasks_server + "tasks/" + id, httpOptions);
+    return this.httpClient.get(`${environment.tasks_server}tasks/${id}`, httpOptions);
   }
 
   post(user: any) {
@@ -37,7 +37,7 @@ export class TaskService {
         'Content-Type': 'application/json'
       })
     };
-    return this.httpClient.post(environment.tasks_server + "tasks", user, httpOptions);
+    return this.httpClient.post(`${environment.tasks_server}tasks`, user, httpOptions);
   }
 
   put(id: number, user: any) {
@@ -47,7 +47,7 @@ export class TaskService {
       })
     };
 
-    return this.httpClient.put(environment.tasks_server + "tasks/" + id, user, httpOptions);
+    return this.httpClient.put(`${environment.tasks_server}tasks/${id}`, user, httpOptions);
   }
 
   delete(id: number) {
@@ -57,6 +57,6 @@ export class TaskService {
       })
     };
 
-    return this.httpClient.delete(environment.tasks_server + "tasks/" + id, httpOptions);
+    return this.httpClient.delete(`${environment.tasks_server}tasks/${id}`, httpOptions);
   }
 }

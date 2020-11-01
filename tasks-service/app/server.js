@@ -18,9 +18,12 @@ app.listen(port, () => {
 
 // API REST for tasks
 // get all tasks
-app.get('/tasks', async function(req, res) {
-    const data = await database.query(`SELECT * FROM tasks`, []);
-    const itemCount = await database.first(`SELECT count(id) AS total FROM users`, []);
+app.get('/tasksbyuser/:status/:user_id', async function(req, res) {
+    const status = req.params.status;
+    const user_id = req.params.user_id;
+
+    const data = await database.query(`SELECT * FROM tasks WHERE user = ? AND state = ?`, [user_id, status]);
+    const itemCount = await database.first(`SELECT count(id) AS total FROM tasks WHERE user = ? AND state = ?`, [user_id, status]);
     const totalItemCount = itemCount.total;
     res.status(200).json({ data, totalItemCount });
 });

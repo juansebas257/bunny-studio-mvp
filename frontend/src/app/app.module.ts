@@ -24,7 +24,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { CardsContainerComponent } from './task/cards-container/cards-container.component';
-import { CardFormComponent } from './task/card-form/card-form.component';
+import { MatCardModule } from '@angular/material/card';
+import { TaskFormComponent } from './task/task-form/task-form.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import { CardFormComponent } from './task/card-form/card-form.component';
     UserDeleteComponent,
     TaskComponent,
     CardsContainerComponent,
-    CardFormComponent
+    TaskFormComponent
   ],
   imports: [
     HttpClientModule,
@@ -55,7 +56,8 @@ import { CardFormComponent } from './task/card-form/card-form.component';
     MatInputModule,
     MatSidenavModule,
     MatListModule,
-    MatMenuModule
+    MatMenuModule,
+    MatCardModule
   ],
   entryComponents: [
     UserFormComponent,

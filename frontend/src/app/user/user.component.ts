@@ -21,7 +21,10 @@ export class UserComponent implements OnInit {
   isLoading: boolean = true;
   totalItemCount: number = 0;
 
-  constructor(private userService: UserService, private dialog: MatDialog) { }
+  constructor(private userService: UserService, private dialog: MatDialog, private frameService: FrameService) {
+    this.frameService.setNavBar('Application Test - Users');
+    this.frameService.setShowBack(false);
+  }
 
   ngOnInit(): void {
     this.updateTable();

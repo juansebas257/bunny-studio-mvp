@@ -2,21 +2,23 @@
     <mat-sidenav mode="side" opened class="sidenav">
         <mat-nav-list>
             <mat-divider></mat-divider>
-            <a mat-list-item [ngClass]="{'mat-list-item-active': selected_submenu == 'pending'}">
+            <a mat-list-item (click)="selected_submenu = '1'" [ngClass]="{'mat-list-item-active': selected_submenu == '1'}">
                 <i class="fa fa-th-list fa-fw fa-icon"></i> Pending Tasks
             </a>
             <mat-divider></mat-divider>
-            <a mat-list-item [ngClass]="{'mat-list-item-active': selected_submenu == 'pending'}">
+            <a mat-list-item (click)="selected_submenu = '2'" [ngClass]="{'mat-list-item-active': selected_submenu == '2'}">
                 <i class="fa fa-check-circle fa-fw fa-icon"></i> Completed Tasks
             </a>
             <mat-divider></mat-divider>
-            <a mat-list-item [ngClass]="{'mat-list-item-active': selected_submenu == 'pending'}">
+            <a mat-list-item (click)="selected_submenu = '3'" [ngClass]="{'mat-list-item-active': selected_submenu == '3'}">
                 <i class="fa fa-archive fa-fw fa-icon"></i> Archived Tasks
             </a>
             <mat-divider></mat-divider>
         </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
-        <app-cards-container></app-cards-container>
+        <app-cards-container [user_id]="user_id" status="1" *ngIf="selected_submenu == '1'"></app-cards-container>
+        <app-cards-container [user_id]="user_id" status="2" *ngIf="selected_submenu == '2'"></app-cards-container>
+        <app-cards-container [user_id]="user_id" status="3" *ngIf="selected_submenu == '3'"></app-cards-container>
     </mat-sidenav-content>
 </mat-sidenav-container>

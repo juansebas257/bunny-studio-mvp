@@ -22,7 +22,7 @@ export class UserService {
       }
     };
 
-    return this.httpClient.get(environment.users_server + "users", httpOptions);
+    return this.httpClient.get(`${environment.users_server}users`, httpOptions);
   }
 
 
@@ -33,7 +33,7 @@ export class UserService {
       })
     };
 
-    return this.httpClient.get(environment.users_server + "users/" + id, httpOptions);
+    return this.httpClient.get(`${environment.users_server}users/${id}`, httpOptions);
   }
 
   post(user: any) {
@@ -42,7 +42,7 @@ export class UserService {
         'Content-Type': 'application/json'
       })
     };
-    return this.httpClient.post(environment.users_server + "users", user, httpOptions);
+    return this.httpClient.post(`${environment.users_server}users`, user, httpOptions);
   }
 
   put(id: number, user: any) {
@@ -52,7 +52,7 @@ export class UserService {
       })
     };
 
-    return this.httpClient.put(environment.users_server + "users/" + id, user, httpOptions);
+    return this.httpClient.put(`${environment.users_server}users/${id}`, user, httpOptions);
   }
 
   delete(id: number) {
@@ -62,6 +62,6 @@ export class UserService {
       })
     };
 
-    return this.httpClient.delete(environment.users_server + "users/" + id, httpOptions);
+    return this.httpClient.delete(`${environment.users_server}users/${id}`, httpOptions);
   }
 }

@@ -4,23 +4,25 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TaskService } from 'src/app/services/task.service';
 
 @Component({
-  selector: 'app-card-form',
-  templateUrl: './card-form.component.html',
-  styleUrls: ['./card-form.component.css']
+  selector: 'app-task-form',
+  templateUrl: './task-form.component.html',
+  styleUrls: ['./task-form.component.css']
 })
-export class CardFormComponent implements OnInit {
+export class TaskFormComponent implements OnInit {
 
   id: number;
+  user: string;
   title: string;
   form: FormGroup;
   isLoading: boolean = true;
 
-  constructor(private taskService: TaskService, private fb: FormBuilder, private dialogRef: MatDialogRef<CardFormComponent>, @Inject(MAT_DIALOG_DATA) data: any) {
+  constructor(private taskService: TaskService, private fb: FormBuilder, private dialogRef: MatDialogRef<TaskFormComponent>, @Inject(MAT_DIALOG_DATA) data: any) {
     this.id = data.id
+    this.user = data.user
   }
 
   ngOnInit() {
-    // if the id is null, is a new user
+    // if the id is null, is a new task
     if (this.id == null) {
       this.title = "New task";
       this.isLoading = false;
@@ -30,7 +32,8 @@ export class CardFormComponent implements OnInit {
     }
 
     this.form = new FormGroup({
-      description: new FormControl(null, Validators.required)
+      description: new FormControl(null, Validators.required),
+      user: new FormControl(this.user)
     });
   }
 

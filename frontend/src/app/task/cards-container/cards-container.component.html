@@ -9,7 +9,7 @@
 
 <br>
 <br>
-<div class="float-fab" *ngIf="!isLoading">
+<div class="float-fab" *ngIf="!isLoading && status == '1'">
     <button mat-fab color="accent" class="fab-button" [ngClass]="{'pulse': dataSource == null || dataSource.length == 0}" (click)="openModal()">
         <i class="fa fa-plus"></i>
     </button>

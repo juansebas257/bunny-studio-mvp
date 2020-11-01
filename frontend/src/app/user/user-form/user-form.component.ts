@@ -66,8 +66,12 @@ export class UserFormComponent implements OnInit {
             this.openSnackBar('User created!');
           },
           error => {
-            // TODO: handle error
-            this.openSnackBar('Error on create user!');
+            //catching duplicated name
+            if (error.error.code == 'ER_DUP_ENTRY') {
+              this.openSnackBar('User with this name already exists!');
+            } else {
+              this.openSnackBar('Error on create user!');
+            }
             this.isLoading = false;
           }
         );
@@ -79,8 +83,12 @@ export class UserFormComponent implements OnInit {
             this.openSnackBar('User updated!');
           },
           error => {
-            // TODO: handle error
-            this.openSnackBar('Error on update user!');
+            //catching duplicated name
+            if (error.error.code == 'ER_DUP_ENTRY') {
+              this.openSnackBar('User with this name already exists!');
+            } else {
+              this.openSnackBar('Error on create user!');
+            }
             this.isLoading = false;
           }
         );

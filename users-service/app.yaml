@@ -1,0 +1,8 @@
+runtime: nodejs12
+service: bunnyusers
+env_variables:
+  # Database Server Configuration
+  DB_SOCKET: /cloudsql/gearsiserp:us-east1:gearsis-erp 
+  DB_NAME: bunnystudiomvp
+  DB_USER: bunny
+  DB_PASSWORD: BunnyStudio2020-

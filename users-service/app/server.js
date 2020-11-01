@@ -76,6 +76,9 @@ app.delete('/users/:id', async function(req, res) {
         // getting parameters
         const id = req.params.id;
 
+        // deleting users task
+        await database.query(`DELETE FROM tasks WHERE user = ?`, [id]);
+
         // deleting user
         const user = await database.query(`DELETE FROM users WHERE id = ?`, [id]);
         res.status(200).json(user);

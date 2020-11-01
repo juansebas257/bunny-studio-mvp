@@ -17,3 +17,12 @@
     right: 4px;
     font-size: 14px;
 }
+
+
+/* only mobile */
+
+@media (max-width: 767.98px) {
+    .task-card {
+        width: 80%;
+    }
+}

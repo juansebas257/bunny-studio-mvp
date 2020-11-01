@@ -15,6 +15,9 @@ It is composed of a front application in Angular 10 and 2 microservices in NodeJ
 
 ![Mobile view](docs/snapshot-mobile.png)
 
+### Software Architecture Diagram
+![Diagram](docs/export_diagram.jpg)
+
 ## Backend setup
 
 ### Users service setup

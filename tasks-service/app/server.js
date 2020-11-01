@@ -51,18 +51,9 @@ app.put('/tasks/:id', async function(req, res) {
     // getting parameters
     const id = req.params.id;
     const description = req.body.description;
+    const state = req.body.state;
 
     // updating task
-    const task = await database.query(`UPDATE tasks SET description = ?, updated_at = NOW() WHERE id = ?`, [description, id]);
-    res.status(200).json(task);
-});
-
-// delete task
-app.delete('/tasks/:id', async function(req, res) {
-    // getting parameters
-    const id = req.params.id;
-
-    // deleting task
-    const task = await database.query(`DELETE FROM tasks WHERE id = ?`, [id]);
+    const task = await database.query(`UPDATE tasks SET description = ?, state = ?, updated_at = NOW() WHERE id = ?`, [description, state, id]);
     res.status(200).json(task);
 });

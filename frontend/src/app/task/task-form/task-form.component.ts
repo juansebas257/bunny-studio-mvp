@@ -12,6 +12,7 @@ export class TaskFormComponent implements OnInit {
 
   id: number;
   user: string;
+  state: string = '1';
   title: string;
   form: FormGroup;
   isLoading: boolean = true;
@@ -33,6 +34,7 @@ export class TaskFormComponent implements OnInit {
 
     this.form = new FormGroup({
       description: new FormControl(null, Validators.required),
+      state: new FormControl(this.state),
       user: new FormControl(this.user)
     });
   }
@@ -41,8 +43,11 @@ export class TaskFormComponent implements OnInit {
     this.taskService.get(this.id)
       .subscribe(
         result => {
-          this.form.controls.name.setValue(result.name);
+          this.form.controls.description.setValue(result.description);
+          this.form.controls.state.setValue(result.state);
           this.isLoading = false;
+
+          this.state = result.state;
         },
         error => {
           //TODO: handle error
@@ -64,10 +69,10 @@ export class TaskFormComponent implements OnInit {
         .subscribe(
           result => {
             this.dialogRef.close(result['insertId']);
-            //this.notifier.notify('success', 'Se ha creado el cliente correctamente')
+            // TODO: notify
           },
           error => {
-            //this.notifier.notify('error', 'Error al guardar el cliente ' + error.message)
+            // TODO: handle error
             this.isLoading = false;
           }
         );
@@ -76,11 +81,10 @@ export class TaskFormComponent implements OnInit {
         .subscribe(
           result => {
             this.dialogRef.close(this.id);
-            //this.notifier.notify('info', 'Se ha modificado el cliente correctamente')
+            // TODO: notify
           },
           error => {
-            //console.log(error)
-            //this.notifier.notify('error', 'Error al guardar el cliente ' + error.message)
+            // TODO: handle error
             this.isLoading = false;
           }
         );
@@ -89,6 +93,11 @@ export class TaskFormComponent implements OnInit {
 
   close() {
     this.dialogRef.close()
+  }
+
+  updateState(state: string) {
+    this.form.controls.state.setValue(state);
+    this.save();
   }
 
 }

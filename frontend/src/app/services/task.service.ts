@@ -49,14 +49,4 @@ export class TaskService {
 
     return this.httpClient.put(`${environment.tasks_server}tasks/${id}`, user, httpOptions);
   }
-
-  delete(id: number) {
-    let httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    };
-
-    return this.httpClient.delete(`${environment.tasks_server}tasks/${id}`, httpOptions);
-  }
 }

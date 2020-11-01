@@ -1,5 +1,5 @@
 <div class="cards-container">
-    <mat-card *ngFor="let task of tasks" class="task-card">
+    <mat-card *ngFor="let task of tasks" class="task-card" (click)="openModal(task.id)">
         <div class="task-date">
             <i class="fa fa-clock"></i> {{ task.created_at | date: 'yyyy-MM-dd H:s'}}
         </div>

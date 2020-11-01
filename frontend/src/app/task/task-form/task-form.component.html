@@ -5,10 +5,20 @@
 <div mat-dialog-content>
     <form [formGroup]="form" (ngSubmit)="save()" autocomplete="off" mat-dialog-content>
         <mat-form-field class="form-input">
-            <textarea matInput placeholder="Description*" formControlName="description" cols="4"></textarea>
+            <textarea matInput placeholder="Description*" formControlName="description" rows="5"></textarea>
         </mat-form-field>
     </form>
 </div>
+
+<!-- menu only for update task, not for create -->
+<div mat-dialog-actions *ngIf="id != null">
+    <button mat-raised-button *ngIf="state == '1'" (click)="updateState(2)" class="mat-button mat-accent" [disabled]="isLoading"><i class="fa fa-check-circle"></i> {{ isLoading? 'Loading...' : 'Mark as completed' }}</button>
+    <button mat-raised-button *ngIf="state == '2'" (click)="updateState(1)" class="mat-button mat-accent" [disabled]="isLoading"><i class="fa fa-th-list"></i> {{ isLoading? 'Loading...' : 'Mark as pending' }}</button>
+    <button mat-raised-button *ngIf="state != '3'" (click)="updateState(3)" class="mat-button mat-warn" [disabled]="isLoading"><i class="fa fa-archive"></i> {{ isLoading? 'Loading...' : 'Archive' }}</button>
+    <button mat-raised-button *ngIf="state == '3'" (click)="updateState(1)" class="mat-button mat-accent" [disabled]="isLoading"><i class="fa fa-archive"></i> {{ isLoading? 'Loading...' : 'Unarchive' }}</button>
+</div>
+
+<br>
 
 <div mat-dialog-actions>
     <button mat-raised-button (click)="save()" class="mat-button mat-primary" [disabled]="isLoading">{{ isLoading? 'Loading...' : 'Save' }}</button>

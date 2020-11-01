@@ -18,15 +18,15 @@
             </ng-container>
 
             <ng-container matColumnDef="created_at">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Created at</th>
-                <td mat-cell *matCellDef="let user" [routerLink]="'/task/1/' + user.id" class="pointer">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header class="hide-mobile">Created at</th>
+                <td mat-cell *matCellDef="let user" [routerLink]="'/task/1/' + user.id" class="pointer hide-mobile">
                     {{ user.created_at | date: 'yyyy-MM-dd H:s'}}
                 </td>
             </ng-container>
 
             <ng-container matColumnDef="updated_at">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Updated at</th>
-                <td mat-cell *matCellDef="let user" [routerLink]="'/task/1/' + user.id" class="pointer">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header class="hide-mobile">Updated at</th>
+                <td mat-cell *matCellDef="let user" [routerLink]="'/task/1/' + user.id" class="pointer hide-mobile">
                     {{ user.updated_at | date: 'yyyy-MM-dd H:s' }}
                 </td>
             </ng-container>

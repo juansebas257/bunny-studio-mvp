@@ -4,4 +4,19 @@
 
 .logo {
     height: 48px;
+    display: none;
+}
+
+.logo-mobile {
+    height: 48px;
+    display: flex;
+}
+
+@media (min-width: 768px) {
+    .logo {
+        display: flex;
+    }
+    .logo-mobile {
+        display: none;
+    }
 }

@@ -28,3 +28,19 @@
 .mat-list-item-active {
     background-color: #e0e0e0;
 }
+
+@media (max-width: 767.98px) {
+    .cards-containers {
+        margin-top: 56px;
+    }
+}
+
+.toolbarNav {
+    position: fixed;
+    top: 56px;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
+    background-color: white;
+}

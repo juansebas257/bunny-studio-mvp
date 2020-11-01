@@ -5,6 +5,11 @@ body {
     height: 100%;
     font-family: 'Open Sans', sans-serif;
     color: #424242;
+    background: #f5f8ff;
+}
+
+.mat-drawer-container {
+    background-color: #f5f8ff!important;
 }
 
 body {
@@ -88,4 +93,8 @@ table {
         max-width: 1280px;
         width: 70%;
     }
+}
+
+.mat-toolbar.mat-primary {
+    background: #232a42;
 }
